@@ -32,7 +32,7 @@ var x;
 		});
 	});
 	$(function() {
-		$('#ref').bind('click', function() {
+		$('#testcase').bind('click', function() {
 			$('#dlg').dialog('close')
 			//$('#center').detach()
 			$('#center').panel({
@@ -56,7 +56,7 @@ var x;
 				data-options="plain:true,iconCls:'icon-search'">打开计划</a> <a
 				href="#" id="ref" class="easyui-linkbutton"
 				data-options="plain:true,iconCls:'icon-add'">创建计划</a> <a
-				href="#" class="easyui-linkbutton"
+				href="#" id="testcase" class="easyui-linkbutton"
 				data-options="plain:true,iconCls:'icon-edit'">用例库</a>
 		</div>
 	</div>
