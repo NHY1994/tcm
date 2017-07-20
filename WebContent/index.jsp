@@ -34,7 +34,7 @@ var x;
 	$(function() {
 		$('#testcase').bind('click', function() {
 			$('#dlg').dialog('close')
-			//$('#center').detach()
+			//$('#center').detach();
 			$('#center').panel({
 			    href:'case.jsp'
 			});
