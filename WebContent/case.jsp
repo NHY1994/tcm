@@ -129,6 +129,10 @@
 	<script type="text/javascript">
 	$(document).ready(function() {
 		$("#save").click(function(){
+			$.messager.progress({
+				title:'请稍等',
+				text:'加载中...'
+			});
 		$.ajax({
 			  type: 'POST',
 			  url: "/TCM/creatcase",
@@ -144,6 +148,7 @@
 				  expected_results:$("#expected_results").val(),
 			  },
 			  success: function(data,status){
+				  $.messager.progress('close');
 	 		      alert(data);},
 			});
 		});

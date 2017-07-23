@@ -18,6 +18,9 @@
 <script>
 var x;
 	$(document).ready(function() {
+		$('#datagrid1').datagrid({
+			url:'/TCM/testcase'
+			})
 		//$('#tcm').css('display','block');
 		//$('#case').css('display','none');
 	 });
@@ -63,16 +66,10 @@ var x;
 	<!-- 导航菜单 -->
 	<!-- 打开计划 start -->
 	<div id="opentest" closed="true" class="easyui-dialog" title="打开计划"
-		style="width: 700px; height: 500px; padding: 5px" data-options="modal:true">
-		<input class="easyui-searchbox" data-options="prompt:'Please Input Value',searcher:doSearch" style="width:70%;"></input>
-	<script>
-		function doSearch(value){
-			alert('You input: ' + value);
-		}
-	</script>
-	<div style="width: 100%;margin-top: 10px">
-		<table class="easyui-datagrid" id="datagrid" style="height: auto; margin: 10px;"
-			data-options="singleSelect:true,collapsible:true,method:'get',fit:false,border:true,fitColumns:true">
+		style="width: 700px; height: 500px; data-options="modal:true">
+	<div style="width: 100%;padding: 0px">
+		<table class="easyui-datagrid" id="datagrid1" style="height: auto; margin: 10px;"
+			data-options="singleSelect:true,collapsible:true,method:'get',fit:false,border:true,fitColumns:true,url:'datagrid_data1.json',toolbar:'#tb1'">
 			<thead>
 				<tr>
 				<th data-options="field:'hidden',width:80" hidden="true">ID</th>
@@ -87,6 +84,12 @@ var x;
 				</tr>
 			</thead>
 		</table>
+		<div id="tb1" style="padding:5px;height:auto">
+		<div>
+		<input type="text" class="easyui-textbox">
+			<a href="#" class="easyui-linkbutton" iconCls="icon-search">Search</a>
+		</div>
+		</div>
 		</div>
 		</div>
 	<!-- 打开计划 end -->
