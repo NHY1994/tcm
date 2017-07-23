@@ -42,7 +42,7 @@ var x;
 	});
 </script>
 </head>
-<body class="easyui-layout">
+<body class="easyui-layout" style="font-family: Arial,Verdana,Sans-serif;">
 	<!-- 导航菜单 -->
 	<div
 		style="height: 100px; background: rgb(255, 255, 255); overflow: hidden;"

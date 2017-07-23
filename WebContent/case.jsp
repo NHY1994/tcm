@@ -39,7 +39,7 @@
 	</div>
 	<div data-options="region:'center'" data-options="fit:true" class="easyui-tabs" id="tab">
 
-		<div title="About">
+		<div title="编辑用例" data-options="fit:true">
 
 			<div id="tb" style="padding: 5px; height: auto">
 				<div style="margin-bottom: 5px">
@@ -59,35 +59,35 @@
 						class="easyui-linkbutton" iconCls="icon-search">Search</a>
 				</div>
 			</div>
-			<div style="height: 90%; width: 95; font-size: 13px;">
+			<div style="height: auto; width: 95; font-size: 13px;">
 				<table border="0px" height="100%" width="100% style="vertical-align:top;">
 					<tr height="50px">
 						<td colspan="2">用例编号：<br> <input type="text"
-							style="width: 95%;"></td>
-						<td>用例描述：<br> <input type="text" style="width: 95%;"></td>
+							style="width: 95%;" id="id"></td>
+						<td>用例描述：<br> <input type="text" id="descript" style="width: 95%;"></td>
 						<td rowspan="3" style="vertical-align: top;">预置条件：<br> <textarea
-								style="width: 95%; height: 90%; resize: none;"></textarea></td>
+								style="width: 95%; height: 90%; resize: none;" id="precondition"></textarea></td>
 					</tr>
 					<tr height="50px">
 						<td style="vertical-align: top; width: 15%">编写者：<br> <input
 							type="text" style="width: 90%;">
 						</td>
 						<td style="vertical-align: top; width: 15%">用例类型：<br> <select
-							id="cc" class="easyui-combobox" name="dept" data-options="panelHeight:'auto',editable:'false'" style="width: 90%;">
+							id="cc" class="easyui-combobox" name="dept" data-options="panelHeight:'auto',editable:false" style="width: 90%;">
 								<option value="A">A</option>
 								<option value="B">B</option>
 								<option value="C">C</option>
 						</select>
 						</td>
 						<td rowspan="2">测试指导：<br> <textarea
-								style="width: 95%; height: 80%; resize: none;"></textarea></td>
+								style="width: 95%; height: 80%; resize: none;" id="test_guidance"></textarea></td>
 					</tr>
 					<tr height="50px">
 						<td style="vertical-align: top; width: 5%">测试模块：<br> <input
-							type="text" style="width: 90%;">
+							type="text" style="width: 90%;" id="test_module">
 						</td>
 						<td style="vertical-align: top; width: 5%">用例级别：<br> <select
-							id="cc" class="easyui-combobox" data-options="panelHeight:'auto'" name="dept" style="width: 90%;">
+							id="level" class="easyui-combobox" data-options="panelHeight:'auto',editable:false" name="dept" style="width: 90%;">
 								<option value="1">1</option>
 								<option value="2">2</option>
 								<option value="3">3</option>
@@ -95,11 +95,11 @@
 					</tr>
 					<tr>
 						<td colspan="2" height="50px">测试项目<br> <input
-							type="text" style="width: 95%;"></td>
+							type="text" style="width: 95%;" id="test_project"></td>
 						<td rowspan="2">测试步骤：<br> <textarea
-								style="width: 95%; height: 80%; resize: none;"></textarea></td>
+								style="width: 95%; height: 80%; resize: none;" id="test_step"></textarea></td>
 						<td rowspan="2">预期结果：<br> <textarea
-								style="width: 95%; height: 80%; resize: none;"></textarea></td>
+								style="width: 95%; height: 80%; resize: none;" id="expected_results"></textarea></td>
 					</tr>
 					<tr>
 						<td style="vertical-align: top; height: 100px" colspan="2">附件上传：<br>
@@ -115,7 +115,7 @@
 					<tr>
 						<td colspan="4">
 							<div style="width: 100%; height: 100%;">
-								<button class="easyui-linkbutton">保 存</button>
+								<button class="easyui-linkbutton" id="save">保 存</button>
 								<button class="easyui-linkbutton">取 消</button>
 							</div>
 						</td>
@@ -126,5 +126,28 @@
 
 	</div>
 	</div>
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$("#save").click(function(){
+		$.ajax({
+			  type: 'POST',
+			  url: "/TCM/creatcase",
+			  data: {
+				  id:$("#id").val(),
+				  descript:$("#descript").val(),
+				  test_module:$("#test_module").val(),
+				  level:$("#level").val(),
+				  test_guidance:$("#test_guidance").val(),
+				  precondition:$("#precondition").val(),
+				  test_project:$("#test_project").val(),
+				  test_step:$("#test_step").val(),
+				  expected_results:$("#expected_results").val(),
+			  },
+			  success: function(data,status){
+	 		      alert(data);},
+			});
+		});
+	})
+	</script>
 </body>
 </html>
