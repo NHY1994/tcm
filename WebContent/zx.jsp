@@ -15,37 +15,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div style="padding: 5px; height: auto">
-						<div style="margin-bottom: 5px">
-							<a href="#" class="easyui-linkbutton" iconCls="icon-add"
-								plain="true"></a> <a href="#" class="easyui-linkbutton"
-								iconCls="icon-edit" plain="true"></a> <a href="#"
-								class="easyui-linkbutton" iconCls="icon-save" plain="true"></a>
-							<a href="#" class="easyui-linkbutton" iconCls="icon-cut"
-								plain="true"></a> <a href="#" class="easyui-linkbutton"
-								iconCls="icon-remove" plain="true" onclick="hide()"></a>
-						</div>
-						<div id="tools">
-							Date From: <input class="easyui-datebox" style="width: 80px">
-							To: <input class="easyui-datebox" style="width: 80px">
-							Language: <input class="easyui-combobox" style="width: 100px"
-								valueField="id" textField="text"> <a href="#"
-								class="easyui-linkbutton" iconCls="icon-search">Search</a>
-						</div>
-					</div>
-					<div class="easyui-pagination" data-options="total:2"></div>
-					<div style="width: 100%">
-						<table class="easyui-datagrid" id="datagrid"
-							style="height: auto;"
-							data-options="singleSelect:true,collapsible:true,url:'datagrid_data1.json',method:'get',fit:false,border:true,fitColumns:true">
-							<thead>
-								<tr>
-									<th data-options="field:'itemid',width:80">Item ID</th>
-									<th data-options="field:'productid',width:100">Product</th>
-								</tr>
-							</thead>
-						</table>
-					</div>
-					<div class="easyui-pagination" data-options="total:2"></div>
+<div style="border-color: blue;height: 100px;border: 2px;border-style: groove;">
+<table></table>
+</div>
 </body>
 </html>

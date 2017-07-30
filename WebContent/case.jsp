@@ -19,7 +19,7 @@
 	</div>
 	<div id="log" class="easyui-panel" title="Event Log"
 		style="height: 250px; padding: 10px"></div>
-	<div data-options="region:'west',split:true,title:'West'"
+	<div data-options="region:'west',split:true,title:'菜单'"
 		style="width: 150px;">
 		<ul id="tree" class="easyui-tree"
 			data-options="animate:true,lines:true">
@@ -59,8 +59,9 @@
 						class="easyui-linkbutton" iconCls="icon-search">Search</a>
 				</div>
 			</div>
-			<div style="height: auto; width: 95; font-size: 13px;">
-				<table border="0px" height="100%" width="100% style="vertical-align:top;">
+			<div style="height: auto; font-size: 13px;padding-left: 9%;padding-right: 9%;">
+			<div style="border-color: #95B8E7 !important;border: 2px;border-style: solid;">
+				<table border="0px" height="100%" style="vertical-align:top;width:100%;border: 1px">
 					<tr height="50px">
 						<td colspan="2">用例编号：<br> <input type="text"
 							style="width: 95%;" id="id"></td>
@@ -121,6 +122,7 @@
 						</td>
 					</tr>
 				</table>
+			</div>
 			</div>
 		</div>
 

@@ -6,8 +6,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="stylesheet" type="text/css"
 	href="easyui/themes/default/easyui.css">
-	
-	<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+<script type="text/javascript"
+	src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
 <script type="text/javascript" src="easyui/jquery.min.js"></script>
 <script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
@@ -16,22 +17,29 @@
 <style>
 </style>
 <script>
-var x;
+	var x;
 	$(document).ready(function() {
 		$('#datagrid1').datagrid({
-			url:'/TCM/testcase'
-			})
+			url : '/TCM/testcase'
+		})
 		//$('#tcm').css('display','block');
 		//$('#case').css('display','none');
-	 });
+	});
 	$(function() {
-		$('#cancel').bind('click', function() {
+		$('#optest').bind('click', function() {
 			//$('#center').detach()
 			$('#dlg').dialog('close');
 			$("#opentest").dialog('open');
 			$('#center').panel({
-			    href:'test.jsp'
+				href : 'test.jsp'
 			});
+		});
+	});
+	$(function() {
+		$('#creplan').bind('click', function() {
+			//$('#center').detach()
+			$('#dlg').dialog('close');
+			$("#createplan").dialog('open');
 		});
 	});
 	$(function() {
@@ -39,13 +47,14 @@ var x;
 			$('#dlg').dialog('close')
 			//$('#center').detach();
 			$('#center').panel({
-			    href:'case.jsp'
+				href : 'case.jsp'
 			});
 		});
 	});
 </script>
 </head>
-<body class="easyui-layout" style="font-family: Arial,Verdana,Sans-serif;">
+<body class="easyui-layout"
+	style="font-family: Arial, Verdana, Sans-serif;">
 	<!-- 导航菜单 -->
 	<div
 		style="height: 100px; background: rgb(255, 255, 255); overflow: hidden;"
@@ -55,46 +64,116 @@ var x;
 		</div>
 		<div class="easyui-panel"
 			style="padding: 5px; margin-top: 10px; width: 100%;">
-			<a href="#" id="cancel" class="easyui-linkbutton"
-				data-options="plain:true,iconCls:'icon-search'">打开计划</a> <a
-				href="#" id="ref" class="easyui-linkbutton"
-				data-options="plain:true,iconCls:'icon-add'">创建计划</a> <a
-				href="#" id="testcase" class="easyui-linkbutton"
+			<a href="#" id="optest" class="easyui-linkbutton"
+				data-options="plain:true,iconCls:'icon-search'">打开计划</a> <a href="#"
+				id="creplan" class="easyui-linkbutton"
+				data-options="plain:true,iconCls:'icon-add'">创建计划</a> <a href="#"
+				id="testcase" class="easyui-linkbutton"
 				data-options="plain:true,iconCls:'icon-edit'">用例库</a>
 		</div>
 	</div>
 	<!-- 导航菜单 -->
 	<!-- 打开计划 start -->
 	<div id="opentest" closed="true" class="easyui-dialog" title="打开计划"
-		style="width: 700px; height: 500px; data-options="modal:true">
-	<div style="width: 100%;padding: 0px">
-		<table class="easyui-datagrid" id="datagrid1" style="height: auto; margin: 10px;"
-			data-options="singleSelect:true,collapsible:true,method:'get',fit:false,border:true,fitColumns:true,url:'datagrid_data1.json',toolbar:'#tb1'">
-			<thead>
-				<tr>
-				<th data-options="field:'hidden',width:80" hidden="true">ID</th>
-					<th data-options="field:'id',width:80" sortable="true">用例编号</th>
-					<th data-options="field:'status',width:100" sortable="true">执行状态</th>
-					<th data-options="field:'implement_user',width:100" sortable="true">执行者</th>
-					<th data-options="field:'level',width:100" sortable="true">用例等级</th>
-					<th data-options="field:'test_module',width:100" sortable="true">测试模块</th>
-					<th data-options="field:'test_step',width:100" sortable="true">测试步骤</th>
-					<th data-options="field:'expected_results',width:100" sortable="true">预期结果</th>
-					<th data-options="field:'implement_time',width:100" sortable="true">执行时间</th>
-				</tr>
-			</thead>
-		</table>
-		<div id="tb1" style="padding:5px;height:auto">
-		<div>
-		<input type="text" class="easyui-textbox">
-			<a href="#" class="easyui-linkbutton" iconCls="icon-search">Search</a>
+		style="width: 700px; height: 500px;"modal:true">
+		<div style="width: 100%; padding: 0px">
+			<table class="easyui-datagrid" id="datagrid1"
+				style="height: auto; margin: 10px;"
+				data-options="singleSelect:true,collapsible:true,method:'get',fit:false,border:true,fitColumns:true,url:'datagrid_data1.json',toolbar:'#tb1'">
+				<thead>
+					<tr>
+						<th data-options="field:'hidden',width:80" hidden="true">ID</th>
+						<th data-options="field:'id',width:80" sortable="true">用例编号</th>
+						<th data-options="field:'status',width:100" sortable="true">执行状态</th>
+						<th data-options="field:'implement_user',width:100"
+							sortable="true">执行者</th>
+						<th data-options="field:'level',width:100" sortable="true">用例等级</th>
+						<th data-options="field:'test_module',width:100" sortable="true">测试模块</th>
+						<th data-options="field:'test_step',width:100" sortable="true">测试步骤</th>
+						<th data-options="field:'expected_results',width:100"
+							sortable="true">预期结果</th>
+						<th data-options="field:'implement_time',width:100"
+							sortable="true">执行时间</th>
+					</tr>
+				</thead>
+			</table>
+			<div id="tb1" style="padding: 5px; height: auto">
+				<div>
+					<input type="text" class="easyui-textbox"> <a href="#"
+						class="easyui-linkbutton" iconCls="icon-search">Search</a>
+				</div>
+			</div>
 		</div>
-		</div>
-		</div>
-		</div>
+	</div>
 	<!-- 打开计划 end -->
+
+	<!-- 创建计划Start -->
+
+	<div id="createplan" closed="true" class="easyui-dialog" title="创建计划"
+		style="width: 700px; height: 500px;"modal:true">
+		<table style="height: 100%; width: 100%;font-size: 13px" border="0px">
+			<tr style="height: 50px">
+				<td>测试项目：<br> <select id="cc" class="easyui-combobox"
+					name="dept" style="width: 98%;" data-options="editable:false">
+						<option value="1">请选择...</option>
+						<option value="2">Lopscoop-PcWeb</option>
+						<option value="3">Lopscoop-MobWeb</option>
+						<option value="4">Lopscoop-MobApp</option>
+						<option value="5">invirlink-PcWeb</option>
+				</select>
+				</td>
+				<td>软件版本：<br> <select id="cc" class="easyui-combobox"
+					name="dept" style="width: 98%;" data-options="editable:false">
+						<option value="1">请选择...</option>
+						<option value="2">Lopscoop-PcWeb</option>
+						<option value="3">Lopscoop-MobWeb</option>
+						<option value="4">Lopscoop-MobApp</option>
+						<option value="5">invirlink-PcWeb</option>
+				</select></td>
+				<td>测试计划版本：<br> <select id="cc" class="easyui-combobox"
+					name="dept" style="width: 98%;" data-options="editable:false">
+						<option value="1">请选择...</option>
+						<option value="2">B01</option>
+						<option value="3">B02</option>
+						<option value="4">B03</option>
+						<option value="5">B04</option>
+				</select></td>
+			</tr>
+			<tr style="height: 50px">
+				<td colspan="3">
+				本次测试计划编号：
+				<input type="text" style="width: 80%"> 
+				</td>
+			</tr>
+			<tr style="height: 50px">
+				<td colspan="3">
+				测试用例级别：<input type="checkbox" value="A"/>A <input type="checkbox" value="B"/>B <input type="checkbox" value="C"/>C
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" style="height: 50px">
+				<div style="width: 50%;float: left;">开始时间：<input id="dd" type="text" class="easyui-datebox" required="required"></div>
+				<div style="width: 50%;float: right;">结束时间：<input id="dd" type="text" class="easyui-datebox" required="required"></div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3">备注：<br>
+				<textarea style="width: 99%;height: 90%;resize: none;"></textarea>
+				</td>
+			</tr>
+			<tr style="height: 50px" >
+				<td colspan="3">
+				<input type="submit" class="easyui-linkbutton" value="创建" style="width: 100px;height: 30px;float: right;margin-right: 10px">
+				</td>
+			</tr>
+		</table>
+	</div>
+
+	<!-- 创建计划End -->
 	<!--  <div class="easyui-layout" href="west.jsp" style="width:100%;height:100%;"></div>-->
-        <!--  <div data-options="region:'west',split:true" href="west.jsp" title="West" style="width:100px;"></div>-->
-        	<div data-options="region:'center',fit:false,border:false,href:'test.jsp'" style="padding: 0px;border:0px;height: auto" id="center"></div>
+	<!--  <div data-options="region:'west',split:true" href="west.jsp" title="West" style="width:100px;"></div>-->
+	<div
+		data-options="region:'center',fit:false,border:false,href:'test.jsp'"
+		style="padding: 0px; border: 0px; height: auto" id="center"></div>
 </body>
 </html>
