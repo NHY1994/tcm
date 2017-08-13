@@ -12,24 +12,23 @@
 <title>Insert title here</title>
 </head>
 <body style="margin: 0px">
+	
+	<div id="tools" style="font-size: 13px;">
 	<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true"></a>
 	<a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true"></a>
 	<a href="#" class="easyui-linkbutton" iconCls="icon-save" plain="true"></a>
 	<a href="#" class="easyui-linkbutton" iconCls="icon-cut" plain="true"></a>
 	<a href="#" class="easyui-linkbutton" iconCls="icon-remove"
 		plain="true" onclick="hide()"></a>
-	<div id="tools" style="font-size: 13px;">
 		Date From: <input class="easyui-datebox" style="width: 80px">
 		To: <input class="easyui-datebox" style="width: 80px">
 		Language: <input class="easyui-combobox" style="width: 100px"
 			valueField="id" textField="text"> <a href="#"
 			class="easyui-linkbutton" iconCls="icon-search">Search</a>
 	</div>
-	<div class="easyui-pagination" data-options="total:2"></div>
-	<div style="width: 100%">
 		<table class="easyui-datagrid" id="datagrid"
 			style="height: auto; margin: 0px;"
-			data-options="singleSelect:true,collapsible:true,method:'get',fit:false,border:true,fitColumns:true">
+			data-options="singleSelect:true,collapsible:true,method:'get',fit:true,border:true,fitColumns:true,toolbar:'#toolbar'">
 			<thead>
 				<tr>
 				<th data-options="field:'hidden',width:80" hidden="true">ID</th>
@@ -44,8 +43,6 @@
 				</tr>
 			</thead>
 		</table>
-	</div>
-	<div class="easyui-pagination" data-options="total:2"></div>
 	
 	<script type="text/javascript">
 		$(document).ready(function() {

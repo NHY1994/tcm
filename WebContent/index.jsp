@@ -108,12 +108,12 @@
 	<!-- 打开计划 end -->
 
 	<!-- 创建计划Start -->
-
 	<div id="createplan" closed="true" class="easyui-dialog" title="创建计划"
-		style="width: 700px; height: 500px;"modal:true">
-		<table style="height: 100%; width: 100%;font-size: 13px" border="0px">
+		style="width: 700px; height: 500px;" data-options="modal:true">
+
+		<table style="height: 100%; width: 100%; font-size: 13px" border="0px">
 			<tr style="height: 50px">
-				<td>测试项目：<br> <select id="cc" class="easyui-combobox"
+				<td>测试项目：<br> <select id="project" class="easyui-combobox"
 					name="dept" style="width: 98%;" data-options="editable:false">
 						<option value="1">请选择...</option>
 						<option value="2">Lopscoop-PcWeb</option>
@@ -122,15 +122,9 @@
 						<option value="5">invirlink-PcWeb</option>
 				</select>
 				</td>
-				<td>软件版本：<br> <select id="cc" class="easyui-combobox"
-					name="dept" style="width: 98%;" data-options="editable:false">
-						<option value="1">请选择...</option>
-						<option value="2">Lopscoop-PcWeb</option>
-						<option value="3">Lopscoop-MobWeb</option>
-						<option value="4">Lopscoop-MobApp</option>
-						<option value="5">invirlink-PcWeb</option>
-				</select></td>
-				<td>测试计划版本：<br> <select id="cc" class="easyui-combobox"
+				<td>软件版本：<br> <input id="sv" class="easyui-textbox"
+					style="width: 90%" ></td>
+				<td>测试计划版本：<br> <select id="pv" class="easyui-combobox"
 					name="dept" style="width: 98%;" data-options="editable:false">
 						<option value="1">请选择...</option>
 						<option value="2">B01</option>
@@ -140,35 +134,85 @@
 				</select></td>
 			</tr>
 			<tr style="height: 50px">
-				<td colspan="3">
-				本次测试计划编号：
-				<input type="text" style="width: 80%"> 
+				<td colspan="3">本次测试计划编号： <input id="testversion" type="text" style="width: 80%">
 				</td>
 			</tr>
 			<tr style="height: 50px">
-				<td colspan="3">
-				测试用例级别：<input type="checkbox" value="A"/>A <input type="checkbox" value="B"/>B <input type="checkbox" value="C"/>C
+				<td colspan="3">测试用例级别：<input type="checkbox" name="case" value="A" />A <input
+					type="checkbox" name="case" value="B" />B <input type="checkbox" name="case" value="C" />C
 				</td>
 			</tr>
 			<tr>
 				<td colspan="3" style="height: 50px">
-				<div style="width: 50%;float: left;">开始时间：<input id="dd" type="text" class="easyui-datebox" required="required"></div>
-				<div style="width: 50%;float: right;">结束时间：<input id="dd" type="text" class="easyui-datebox" required="required"></div>
+					<div style="width: 50%; float: left;">
+						开始时间：<input id="stdate" type="text" class="easyui-datebox"
+							required="required" data-options="editable:false">
+					</div>
+					<div style="width: 50%; float: right;">
+						结束时间：<input id="enddate" type="text" class="easyui-datebox"
+							required="required" data-options="editable:false">
+					</div>
 				</td>
 			</tr>
 			<tr>
-				<td colspan="3">备注：<br>
-				<textarea style="width: 99%;height: 90%;resize: none;"></textarea>
+				<td colspan="3">备注：<br> <textarea
+						style="width: 99%; height: 90%; resize: none;" id="note"></textarea>
 				</td>
 			</tr>
-			<tr style="height: 50px" >
-				<td colspan="3">
-				<input type="submit" class="easyui-linkbutton" value="创建" style="width: 100px;height: 30px;float: right;margin-right: 10px">
+			<tr style="height: 50px">
+				<td colspan="3"><input type="button" id="create"
+					class="easyui-linkbutton" value="创建"
+					style="width: 100px; height: 30px; float: right; margin-right: 10px">
 				</td>
 			</tr>
 		</table>
 	</div>
-
+	<script type="text/javascript">
+		$(document).ready(function() {
+			function change(){
+				var project=$('#project').combobox('getText');
+				var pv=$('#pv').combobox('getText');
+				var sv=$("#sv").val();
+				$("#testversion").val(project+"-"+sv+"-"+pv);
+				//alert(val)
+			}
+			$("#project").combobox({
+				onChange: function (newValue,oldValue) {
+					change()
+					}
+			});
+			$("#pv").combobox({
+				onChange: function (newValue,oldValue) {
+					change()
+					}
+			});
+			$("#sv").textbox({
+				onChange: function (value) {
+					change()
+					}
+			});
+			$("#create").click(function() {
+				var case_level=new Array();
+				$('input[name="case"]:checked').each(function(){  
+					case_level.push($(this).val());//向数组中添加元素  
+				}); 
+				var idstr=case_level.join(',');//将数组元素连接起来以构建一个字符串  
+				alert(idstr);
+				$.post("/TCM/CreatePlan", {
+					test_project : $('#project').combobox('getText'),
+					software_version : $("#sv").val(),
+					plan_version : $('#pv').combobox('getText'),
+					testversion:$("#testversion").val,
+					case_level:idstr,
+					star_time : $('#stdate').datebox('getValue'),
+					end_time : $('#enddate').datebox('getValue'),
+					note : $("#note").val()
+				}, function(data, status) {
+					alert("Data: " + data + "\nStatus: " + status);
+				});
+			});
+		})
+	</script>
 	<!-- 创建计划End -->
 	<!--  <div class="easyui-layout" href="west.jsp" style="width:100%;height:100%;"></div>-->
 	<!--  <div data-options="region:'west',split:true" href="west.jsp" title="West" style="width:100px;"></div>-->
