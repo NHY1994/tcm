@@ -22,19 +22,7 @@
 	<div data-options="region:'west',split:true,title:'菜单'"
 		style="width: 150px;">
 		<ul id="tree" class="easyui-tree"
-			data-options="animate:true,lines:true">
-			<li><span>My Documents</span>
-				<ul>
-					<li data-options="state:'closed'"><span>Photos</span>
-						<ul>
-							<li><span>Friend</span></li>
-							<li><span>Wife</span></li>
-							<li><span>Company</span></li>
-						</ul></li>
-					<li>index.html</li>
-					<li>about.html</li>
-					<li>welcome.html</li>
-				</ul></li>
+			data-options="animate:true,lines:true,url:'/TCM/Testcaselibrary'">
 		</ul>
 	</div>
 	<div data-options="region:'center'" data-options="fit:true" class="easyui-tabs" id="tab">
@@ -130,6 +118,8 @@
 	</div>
 	<script type="text/javascript">
 	$(document).ready(function() {
+		
+		alert('<%=request.getParameter("item")%>');
 		$("#save").click(function(){
 			$.messager.progress({
 				title:'请稍等',

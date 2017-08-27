@@ -41,16 +41,29 @@
 			$('#dlg').dialog('close');
 			$("#createplan").dialog('open');
 		});
-	});
-	$(function() {
-		$('#testcase').bind('click', function() {
-			$('#dlg').dialog('close')
+	});	
+		
+	 $(function() {
+		 
+		 $('#mm1').menu({
+			    onClick:function(item){
+			    	var item=item.name;
+					alert(item);
+					$('#center').panel({
+						href : 'case.jsp?item='+item
+					});
+			    }
+			}); 
+		 
+		/* $('#testcase').bind('click', function() {
+			$('#dlg').dialog('close');
 			//$('#center').detach();
+			alert($("#testcase").linkbutton("item"));
 			$('#center').panel({
 				href : 'case.jsp'
 			});
-		});
-	});
+		}); */
+	}); 
 </script>
 </head>
 <body class="easyui-layout"
@@ -68,9 +81,14 @@
 				data-options="plain:true,iconCls:'icon-search'">打开计划</a> <a href="#"
 				id="creplan" class="easyui-linkbutton"
 				data-options="plain:true,iconCls:'icon-add'">创建计划</a> <a href="#"
-				id="testcase" class="easyui-linkbutton"
-				data-options="plain:true,iconCls:'icon-edit'">用例库</a>
+				id="testcase" class="easyui-menubutton"
+				data-options="menu:'#mm1',plain:true,iconCls:'icon-edit'">用例库</a>
 		</div>
+		<div id="mm1" style="width:auto;" class="easyui-menu">
+		<div data-options="name:'Lopscoop-Web'">Lopscoop-Web</div>
+		<div data-options="name:'Lopscoop-APP'">Lopscoop-APP</div>
+		<div data-options="name:'Lopscoop-Manager'">Lopscoop-Manager</div>
+	</div>
 	</div>
 	<!-- 导航菜单 -->
 	<!-- 打开计划 start -->
@@ -123,7 +141,7 @@
 				</select>
 				</td>
 				<td>软件版本：<br> <input id="sv" class="easyui-textbox"
-					style="width: 90%" ></td>
+					style="width: 90%"></td>
 				<td>测试计划版本：<br> <select id="pv" class="easyui-combobox"
 					name="dept" style="width: 98%;" data-options="editable:false">
 						<option value="1">请选择...</option>
@@ -134,12 +152,14 @@
 				</select></td>
 			</tr>
 			<tr style="height: 50px">
-				<td colspan="3">本次测试计划编号： <input id="testversion" type="text" style="width: 80%">
+				<td colspan="3">本次测试计划编号： <input id="testversion" type="text"
+					style="width: 80%">
 				</td>
 			</tr>
 			<tr style="height: 50px">
-				<td colspan="3">测试用例级别：<input type="checkbox" name="case" value="A" />A <input
-					type="checkbox" name="case" value="B" />B <input type="checkbox" name="case" value="C" />C
+				<td colspan="3">测试用例级别：<input type="checkbox" name="case"
+					value="A" />A <input type="checkbox" name="case" value="B" />B <input
+					type="checkbox" name="case" value="C" />C
 				</td>
 			</tr>
 			<tr>
@@ -169,41 +189,41 @@
 	</div>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			function change(){
-				var project=$('#project').combobox('getText');
-				var pv=$('#pv').combobox('getText');
-				var sv=$("#sv").val();
-				$("#testversion").val(project+"-"+sv+"-"+pv);
+			function change() {
+				var project = $('#project').combobox('getText');
+				var pv = $('#pv').combobox('getText');
+				var sv = $("#sv").val();
+				$("#testversion").val(project + "-" + sv + "-" + pv);
 				//alert(val)
 			}
 			$("#project").combobox({
-				onChange: function (newValue,oldValue) {
+				onChange : function(newValue, oldValue) {
 					change()
-					}
+				}
 			});
 			$("#pv").combobox({
-				onChange: function (newValue,oldValue) {
+				onChange : function(newValue, oldValue) {
 					change()
-					}
+				}
 			});
 			$("#sv").textbox({
-				onChange: function (value) {
+				onChange : function(value) {
 					change()
-					}
+				}
 			});
 			$("#create").click(function() {
-				var case_level=new Array();
-				$('input[name="case"]:checked').each(function(){  
+				var case_level = new Array();
+				$('input[name="case"]:checked').each(function() {
 					case_level.push($(this).val());//向数组中添加元素  
-				}); 
-				var idstr=case_level.join(',');//将数组元素连接起来以构建一个字符串  
+				});
+				var idstr = case_level.join(',');//将数组元素连接起来以构建一个字符串  
 				alert(idstr);
 				$.post("/TCM/CreatePlan", {
 					test_project : $('#project').combobox('getText'),
 					software_version : $("#sv").val(),
 					plan_version : $('#pv').combobox('getText'),
-					testversion:$("#testversion").val,
-					case_level:idstr,
+					testversion : $("#testversion").val,
+					case_level : idstr,
 					star_time : $('#stdate').datebox('getValue'),
 					end_time : $('#enddate').datebox('getValue'),
 					note : $("#note").val()
