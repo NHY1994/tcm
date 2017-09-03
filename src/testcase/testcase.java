@@ -49,9 +49,14 @@ public class testcase extends HttpServlet {
 		String userid=request.getParameter("name");
 		String psd=request.getParameter("psd");
 		//System.out.print(userid+"-"+psd);
+		String planid=request.getParameter("planid");
+		String node=request.getParameter("node");
+		node = new String(node.getBytes("ISO8859-1"),"UTF-8");
+		System.out.println(planid+"-"+node);
 		String driver="com.mysql.jdbc.Driver";
 		String url="jdbc:mysql://localhost:3306/tcm";
-		String sql="SELECT * FROM test_case_source_implement";
+		String sql="SELECT * FROM test_case_source_implement WHERE plan_number='"+planid+"' AND test_module='"+node+"'";
+		System.out.println(sql);
 		String name="null";
 		try{
 			Class.forName(driver);

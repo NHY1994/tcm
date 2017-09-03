@@ -46,8 +46,9 @@
 	
 	<script type="text/javascript">
 		$(document).ready(function() {
+			alert(parent.$("input:hidden[name='par']").val());
 			$('#datagrid').datagrid({
-				url:'/TCM/testcase',
+				url:'/TCM/testcase'+parent.$("input:hidden[name='par']").val(),
 								onDblClickRow : function() {
 									var row = $('#datagrid').datagrid('getSelected');
 									if (row) {

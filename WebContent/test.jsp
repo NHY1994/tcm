@@ -12,19 +12,7 @@
 		<div data-options="region:'west',split:true,title:'West'"
 			style="width: 150px;">
 			<ul id="tree" class="easyui-tree"
-				data-options="animate:true,lines:true">
-				<li><span>My Documents</span>
-					<ul>
-						<li data-options="state:'closed'"><span>Photos</span>
-							<ul>
-								<li><span>Friend</span></li>
-								<li><span>Wife</span></li>
-								<li><span>Company</span></li>
-							</ul></li>
-						<li>index.html</li>
-						<li>about.html</li>
-						<li>welcome.html</li>
-					</ul></li>
+				data-options="animate:true,lines:true,url:'/TCM/selecttree'">
 			</ul>
 		</div>
 		<div data-options="region:'center'"
@@ -199,7 +187,8 @@
 
 												onClick : function(node) {
 													if ($('#tree').tree('isLeaf',node.target)) {//判断是否是叶子节点  
-														alert(node.text); // alert node text property when clicked
+														alert(node.text+$("input:hidden[name='planid']").val()); // alert node text property when clicked
+														$("input:hidden[name='par']").val('?node='+node.text+'&planid='+$("input:hidden[name='planid']").val());
 														var tab = $('#tab').tabs('getSelected');
 														var content = '<iframe scrolling="auto" frameborder="0" src="test_center.jsp" style="width:100%;height:100%;"></iframe>';
 														if ($('#tab').tabs('exists',node.text)) //{

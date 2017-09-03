@@ -234,6 +234,8 @@
 		})
 	</script>
 	<!-- 创建计划End -->
+	<!-- 存储计划编号 --><input type="hidden" name="planid" value="10010">
+	<input type="hidden" name="par" value="">
 	<!--  <div class="easyui-layout" href="west.jsp" style="width:100%;height:100%;"></div>-->
 	<!--  <div data-options="region:'west',split:true" href="west.jsp" title="West" style="width:100px;"></div>-->
 	<div
