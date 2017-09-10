@@ -26,7 +26,7 @@
 			valueField="id" textField="text"> <a href="#"
 			class="easyui-linkbutton" iconCls="icon-search">Search</a>
 	</div>
-		<table class="easyui-datagrid" id="datagrid"
+		<table class="easyui-datagrid" id="test_center_data"
 			style="height: auto; margin: 0px;"
 			data-options="singleSelect:true,collapsible:true,method:'get',fit:true,border:true,fitColumns:true,toolbar:'#toolbar'">
 			<thead>
@@ -45,45 +45,89 @@
 		</table>
 	
 	<script type="text/javascript">
+	var row;
+	var rowIndex;
+	var data;
+	var rowid;
+	function open1(){
+		$.post("/TCM/selectcase",
+			    {
+			      id:rowid
+			    },
+			    function(data,status){
+			      var jsondatas=eval("("+data+")");
+			      $.each(jsondatas.data,function(i,n){  
+			    	  parent.$('#create_time').val(n.create_time);
+			    	  parent.$('#test_module').val(n.test_module);
+			    	  parent.$('#level').val(n.level);
+			    	  parent.$('#precondition').val(n.precondition);
+			    	  parent.$('#expected_results').val(n.expected_results);
+			    	  parent.$('#test_attachment').val(n.test_attachment);
+			    	  parent.$('#test_guidance').val(n.test_guidance);
+			    	  parent.$('#implement_time').val(n.implement_time);
+			    	  parent.$('#test_step').val(n.test_step);
+			    	  parent.$('#attachment').val(n.attachment);
+			    	  parent.$('#test_project').val(n.test_project);
+			    	  parent.$('#actual_result').val(n.actual_result);
+			    	  parent.$('#id').val(n.id);
+			    	  parent.$('#create_user').val(n.create_user);
+			    	  parent.$('#descript').val(n.descript);
+			    	  parent.$('#plan_number').val(n.plan_number);
+			    	  parent.$('#implement_user').val(n.implement_user);
+			    	  }  
+			    	  )  
+			      parent.$.messager.progress('close');
+			    });
+	};
 		$(document).ready(function() {
+			
+			
 			alert(parent.$("input:hidden[name='par']").val());
-			$('#datagrid').datagrid({
+			
+			parent.$("#next,#pre").click(function(){
+				  
+				  if($(this).attr("id")=="pre"){
+					  if(rowIndex<=0){
+						  rowIndex=1;
+					  }
+					    console.log($(this).attr("id")+"1");
+						var row1=$('#test_center_data').datagrid('getData').rows[--rowIndex];
+						console.log(rowIndex);
+						rowid=row1.id;
+						console.log(rowid);
+						parent.$("#casenum").val(rowIndex+1+'/'+data.rows.length);
+						open1();
+				  }
+				  else{
+					  if(rowIndex>=data.rows.length-1){
+						  rowIndex=data.rows.length-2;
+					  }
+					  console.log($(this).attr("id"));
+					  var row1=$('#test_center_data').datagrid('getData').rows[++rowIndex];
+						console.log(rowIndex);
+						console.log(row1);
+						parent.$("#casenum").val(rowIndex+1+'/'+data.rows.length);
+						rowid=row1.id;
+						console.log(rowid);
+						open1();
+				  }	  
+			});
+			
+			$('#test_center_data').datagrid({
 				url:'/TCM/testcase'+parent.$("input:hidden[name='par']").val(),
 								onDblClickRow : function() {
-									var row = $('#datagrid').datagrid('getSelected');
+									data=$('#test_center_data').datagrid('getData');
+									console.log(data.rows.length);
+									row = $('#test_center_data').datagrid('getSelected');
+									rowid=row.id;
+									rowIndex = $('#test_center_data').datagrid('getRowIndex', row);
+									parent.$("#casenum").val(rowIndex+1+'/'+data.rows.length);
 									if (row) {
 										//parent.$("#dlg").dialog('open');
 										parent.$("#dlg").dialog({
 											//title:'123'
-											onOpen:function(){
-												$.post("/TCM/selectcase",
-													    {
-													      id:row.id
-													    },
-													    function(data,status){
-													      var jsondatas=eval("("+data+")");
-													      $.each(jsondatas.data,function(i,n){  
-													    	  parent.$('#create_time').val(n.create_time);
-													    	  parent.$('#test_module').val(n.test_module);
-													    	  parent.$('#level').val(n.level);
-													    	  parent.$('#precondition').val(n.precondition);
-													    	  parent.$('#expected_results').val(n.expected_results);
-													    	  parent.$('#test_attachment').val(n.test_attachment);
-													    	  parent.$('#test_guidance').val(n.test_guidance);
-													    	  parent.$('#implement_time').val(n.implement_time);
-													    	  parent.$('#test_step').val(n.test_step);
-													    	  parent.$('#attachment').val(n.attachment);
-													    	  parent.$('#test_project').val(n.test_project);
-													    	  parent.$('#actual_result').val(n.actual_result);
-													    	  parent.$('#id').val(n.id);
-													    	  parent.$('#create_user').val(n.create_user);
-													    	  parent.$('#descript').val(n.descript);
-													    	  parent.$('#plan_number').val(n.plan_number);
-													    	  parent.$('#implement_user').val(n.implement_user);
-													    	  }  
-													    	  )  
-													      parent.$.messager.progress('close');
-													    });
+											onOpen:function (){
+												open1();
 											}
 										});
 										parent.$("#dlg").dialog('open');

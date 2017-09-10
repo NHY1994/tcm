@@ -19,9 +19,9 @@
 <script>
 	var x;
 	$(document).ready(function() {
-		$('#datagrid1').datagrid({
-			url : '/TCM/testcase'
-		})
+		//$('#datagrid1').datagrid({
+			//url : '/TCM/testcase'
+		//})
 		//$('#tcm').css('display','block');
 		//$('#case').css('display','none');
 	});
@@ -41,20 +41,20 @@
 			$('#dlg').dialog('close');
 			$("#createplan").dialog('open');
 		});
-	});	
-		
-	 $(function() {
-		 
-		 $('#mm1').menu({
-			    onClick:function(item){
-			    	var item=item.name;
-					alert(item);
-					$('#center').panel({
-						href : 'case.jsp?item='+item
-					});
-			    }
-			}); 
-		 
+	});
+
+	$(function() {
+
+		$('#mm1').menu({
+			onClick : function(item) {
+				var item = item.name;
+				alert(item);
+				$('#center').panel({
+					href : 'case.jsp?item=' + item
+				});
+			}
+		});
+
 		/* $('#testcase').bind('click', function() {
 			$('#dlg').dialog('close');
 			//$('#center').detach();
@@ -63,7 +63,7 @@
 				href : 'case.jsp'
 			});
 		}); */
-	}); 
+	});
 </script>
 </head>
 <body class="easyui-layout"
@@ -82,13 +82,21 @@
 				id="creplan" class="easyui-linkbutton"
 				data-options="plain:true,iconCls:'icon-add'">创建计划</a> <a href="#"
 				id="testcase" class="easyui-menubutton"
-				data-options="menu:'#mm1',plain:true,iconCls:'icon-edit'">用例库</a>
+				data-options="menu:'#mm1',plain:true,iconCls:'icon-edit'">用例库</a> <a
+				href="#" id="testcase" class="easyui-menubutton"
+				data-options="menu:'#mm2',plain:true,iconCls:'icon-bug'">故障管理</a> <a
+				href="#" id="testcase" class="easyui-linkbutton"
+				data-options="menu:'#mm',plain:true,iconCls:'icon-large-chart'">测试报表</a>
 		</div>
-		<div id="mm1" style="width:auto;" class="easyui-menu">
-		<div data-options="name:'Lopscoop-Web'">Lopscoop-Web</div>
-		<div data-options="name:'Lopscoop-APP'">Lopscoop-APP</div>
-		<div data-options="name:'Lopscoop-Manager'">Lopscoop-Manager</div>
-	</div>
+		<div id="mm1" style="width: auto;" class="easyui-menu">
+			<div data-options="name:'Lopscoop-Web'">Lopscoop-Web</div>
+			<div data-options="name:'Lopscoop-APP'">Lopscoop-APP</div>
+			<div data-options="name:'Lopscoop-Manager'">Lopscoop-Manager</div>
+		</div>
+		<div id="mm2" style="width: auto;" class="easyui-menu">
+			<div data-options="name:'bugmanage'">故障管理</div>
+			<div data-options="name:'SubmitBug'">提交故障</div>
+		</div>
 	</div>
 	<!-- 导航菜单 -->
 	<!-- 打开计划 start -->
@@ -234,7 +242,8 @@
 		})
 	</script>
 	<!-- 创建计划End -->
-	<!-- 存储计划编号 --><input type="hidden" name="planid" value="10010">
+	<!-- 存储计划编号 -->
+	<input type="hidden" name="planid" value="10010">
 	<input type="hidden" name="par" value="">
 	<!--  <div class="easyui-layout" href="west.jsp" style="width:100%;height:100%;"></div>-->
 	<!--  <div data-options="region:'west',split:true" href="west.jsp" title="West" style="width:100px;"></div>-->

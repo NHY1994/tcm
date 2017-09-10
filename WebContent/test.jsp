@@ -23,7 +23,7 @@
 			</div>
 		</div>
 	</div>
-<div id="dlg" closed="true" class="easyui-dialog" title="执行用例"
+	<div id="dlg" closed="true" class="easyui-dialog" title="执行用例"
 		style="width: 900px; height: 600px; padding: 0px">
 		<div class="easyui-tabs" data-options="tabWidth:100,plain:true"
 			style="width: auto; height: 100%; border: none;">
@@ -34,19 +34,19 @@
 				</div>
 				<div
 					style="text-align: right; border: 1px !important; border-color: black;">
-					执行时间：<input type="text" id='implement_time'>
-					创建时间：<input type="text" id='create_time'>
-					 <select id="casestatues" name="state"
+					执行时间：<input type="text" id='implement_time'> 创建时间：<input
+						type="text" id='create_time'> <select id="casestatues"
+						name="state"
 						style="width: 15%; height: 23px; margin: 5px; border-color: #95B8E7; border-radius: 5px; outline: none; cursor: pointer;">
 						<option value="1" title="该用例未执行">NoRun</option>
 						<option value="2" title="该用例测试通过">Pass</option>
 						<option value="3" title="该用例不适用本次测试">N/A</option>
 						<option value="4" title="本次测试因环境等原因暂时无法执行">Block</option>
-					</select> <img alt="" src="image/left.jpg"
+					</select> <img alt="" id="pre" src="image/left.jpg"
 						style="height: 25px; width: 25px; vertical-align: middle; cursor: pointer; margin: 5px">
-					<input readonly="readonly" type="text" value="3/10"
+					<input id="casenum" readonly="readonly" type="text" value="3/10"
 						style="width: 50px; margin: 5px; text-align: center;"> <img
-						alt="" src="image/right.jpg"
+						alt="" id="next" src="image/right.jpg"
 						style="height: 25px; width: 25px; vertical-align: middle; cursor: pointer; margin: 5px">
 					<br />
 					<hr style="background-color: #95B8E7; border: 0px; height: 1px;">
@@ -54,16 +54,20 @@
 				<div style="height: 90%; width: 95">
 					<table border="0px" height="100%" width="100% style="vertical-align:top;">
 						<tr height="50px">
-							<td colspan="2">用例编号：<br> <input type="text" id='id' style="width: 95%;"></td>
-							<td>用例描述：<br> <input type="text" id='descript' style="width: 95%;"></td>
+							<td colspan="2">用例编号：<br> <input type="text" id='id'
+								style="width: 95%;"></td>
+							<td>用例描述：<br> <input type="text" id='descript'
+								style="width: 95%;"></td>
 							<td rowspan="3" style="vertical-align: top;">预置条件：<br>
-								<textarea id='precondition' style="width: 95%; height: 90%; resize: none;"></textarea></td>
+								<textarea id='precondition'
+									style="width: 95%; height: 90%; resize: none;"></textarea></td>
 						</tr>
 						<tr height="50px">
-							<td style="vertical-align: top; width: 15%">编写者：<br> <input type="text" id='create_user' style="width: 90%;">
+							<td style="vertical-align: top; width: 15%">编写者：<br> <input
+								type="text" id='create_user' style="width: 90%;">
 							</td>
 							<td style="vertical-align: top; width: 15%">关联用例：<br>
-				
+
 								<div>
 									<input type="text" id="tip"
 										style="width: 90%; position: relative;"
@@ -72,12 +76,12 @@
 										style="border: 1px; border-color: #95B8E7; border-style: solid; background-color: white; width: 200px; height: 100px;; position: absolute;; outline: none; display: none; z-index: 100000">
 										<div style="text-align: right; cursor: pointer;"
 											onclick="$('#p').css('display','none')">关闭</div>
-										<ui>lalal
-										</ui>
+										<ui>lalal </ui>
 									</div>
 								</div>
 							</td>
-							<td rowspan="2">测试指导：<br> <textarea id='test_guidance' style="width: 95%; height: 80%; resize: none;"></textarea></td>
+							<td rowspan="2">测试指导：<br> <textarea id='test_guidance'
+									style="width: 95%; height: 80%; resize: none;"></textarea></td>
 						</tr>
 						<tr height="50px">
 							<td style="vertical-align: top; width: 5%">测试模块：<br> <input
@@ -92,7 +96,8 @@
 							<td rowspan="2">测试步骤：<br> <textarea
 									style="width: 95%; height: 80%; resize: none;" id='test_step'></textarea></td>
 							<td rowspan="2">预期结果：<br> <textarea
-									style="width: 95%; height: 80%; resize: none;" id='expected_results'></textarea></td>
+									style="width: 95%; height: 80%; resize: none;"
+									id='expected_results'></textarea></td>
 						</tr>
 						<tr>
 							<td style="vertical-align: top; height: 100px" colspan="2">附件下载：<br>
@@ -112,8 +117,10 @@
 								<div style="width: 100%; height: 100%;">
 									<div style="height: 100%; width: 60%; float: left;">
 										测试结果<br>
-										<textarea id='actual_result' style="height: 40%; width: 96%; resize: none"></textarea>
-										<br>备注<br> <input type="text" id='note' style="width: 96%">
+										<textarea id='actual_result'
+											style="height: 40%; width: 96%; resize: none"></textarea>
+										<br>备注<br> <input type="text" id='note'
+											style="width: 96%">
 									</div>
 									<div style="height: 100%; width: 40%; float: left;">
 										用例执行附件列表<br>
@@ -148,7 +155,8 @@
 						</tr>
 					</thead>
 				</table>
-				 <div id="tooltip" class="easyui-tooltip" style="height: 100px;width: 100px"></div>
+				<div id="tooltip" class="easyui-tooltip"
+					style="height: 100px; width: 100px"></div>
 			</div>
 		</div>
 	</div>
@@ -186,32 +194,52 @@
 												},
 
 												onClick : function(node) {
-													if ($('#tree').tree('isLeaf',node.target)) {//判断是否是叶子节点  
-														alert(node.text+$("input:hidden[name='planid']").val()); // alert node text property when clicked
-														$("input:hidden[name='par']").val('?node='+node.text+'&planid='+$("input:hidden[name='planid']").val());
-														var tab = $('#tab').tabs('getSelected');
-														var content = '<iframe scrolling="auto" frameborder="0" src="test_center.jsp" style="width:100%;height:100%;"></iframe>';
-														if ($('#tab').tabs('exists',node.text)) //{
-															$('#tab').tabs('close',node.text);
-															$('#tab').tabs('add',{
-																				title : node.text,
-																				content : content,
-																				closable : true,
-																				//href:"test_center.jsp"
-																			});
-														}
+													if ($('#tree').tree(
+															'isLeaf',
+															node.target)) {//判断是否是叶子节点  
+														alert(node.text
+																+ $(
+																		"input:hidden[name='planid']")
+																		.val()); // alert node text property when clicked
+														$(
+																"input:hidden[name='par']")
+																.val(
+																		'?node='
+																				+ node.text
+																				+ '&planid='
+																				+ $(
+																						"input:hidden[name='planid']")
+																						.val());
+														var tab = $('#tab')
+																.tabs(
+																		'getSelected');
+														alert(node.text);
+														var content = '<iframe id="'+node.text+'" scrolling="auto" frameborder="0" src="test_center.jsp" style="width:100%;height:100%;"></iframe>';
+														if ($('#tab').tabs(
+																'exists',
+																node.text)) //{
+															$('#tab').tabs(
+																	'close',
+																	node.text);
+														$('#tab').tabs('add', {
+															title : node.text,
+															content : content,
+															closable : true,
+														//href:"test_center.jsp"
+														});
 													}
-												//}
+												}
+											//}
 											});
-							$("#next").click(
+							/* $("#next").click(
 									function() {
-										var row = $('#datagrid').datagrid(
+										var row = $('#test_center_data').datagrid(
 												'getData').rows[1];
-										var rowIndex = $('#datagrid').datagrid(
+										var rowIndex = $('#test_center_data').datagrid(
 												'getRowIndex', row);
 										//var row = $('#datagrid').datagrid('getSelected');
 										if (row) {
-											//alert('Item ID:'+row.itemid+"Price:"+row.productid);
+											alert('Item ID:'+row.hidden);
 
 											$("#dlg").dialog('open');
 											$("#_easyui_textbox_input1").val(
@@ -220,7 +248,7 @@
 															+ "Price:"
 															+ row.productid);
 										}
-									});
+									}); */
 
 						});
 		function hide() {

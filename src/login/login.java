@@ -39,6 +39,7 @@ public class login extends HttpServlet {
 		String driver="com.mysql.jdbc.Driver";
 		String url="jdbc:mysql://localhost:3306/tcm";
 		String sql="SELECT username FROM `user` WHERE psd="+psd;
+		System.out.println(sql);
 		String name="null";
 		try{
 			Class.forName(driver);

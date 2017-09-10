@@ -27,10 +27,10 @@
 	</div>
 	<div data-options="region:'center'" data-options="fit:true" class="easyui-tabs" id="tab">
 
-		<div title="编辑用例" data-options="fit:true">
+		<div title="编辑用例" data-options="fit:false">
 
-			<div id="tb" style="padding: 5px; height: auto">
-				<div style="margin-bottom: 5px">
+			<div id="tb" style="padding: 5px; height: 100%;bottom: 0px" data-options="fit:false">
+				<div>
 					<a href="#" class="easyui-linkbutton" iconCls="icon-add"
 						plain="true"></a> <a href="#" class="easyui-linkbutton"
 						iconCls="icon-edit" plain="true"></a> <a href="#"
@@ -46,10 +46,8 @@
 						valueField="id" textField="text"> <a href="#"
 						class="easyui-linkbutton" iconCls="icon-search">Search</a>
 				</div>
-			</div>
-			<div style="height: auto; font-size: 13px;padding-left: 9%;padding-right: 9%;">
-			<div style="border-color: #95B8E7 !important;border: 2px;border-style: solid;">
-				<table border="0px" height="100%" style="vertical-align:top;width:100%;border: 1px">
+				<div style="height: 300px;margin-bottom: 0px" data-options="fit:true">
+				<table border="0px" height="100%" style="vertical-align:top;width:70%;border: 1px;">
 					<tr height="50px">
 						<td colspan="2">用例编号：<br> <input type="text"
 							style="width: 95%;" id="id"></td>
@@ -103,19 +101,19 @@
 					</tr>
 					<tr>
 						<td colspan="4">
-							<div style="width: 100%; height: 100%;">
+							<div style="width: 100%; height: auto%;">
 								<button class="easyui-linkbutton" id="save">保 存</button>
 								<button class="easyui-linkbutton">取 消</button>
 							</div>
 						</td>
 					</tr>
 				</table>
+				</div>
+			</div>
+				
 			</div>
 			</div>
 		</div>
-
-	</div>
-	</div>
 	<script type="text/javascript">
 	$(document).ready(function() {
 		
