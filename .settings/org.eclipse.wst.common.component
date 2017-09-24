@@ -2,6 +2,8 @@
     <wb-module deploy-name="TCM">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/lib"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/libs"/>
         <property name="context-root" value="TCM"/>
         <property name="java-output-path" value="/TCM/build/classes"/>
     </wb-module>

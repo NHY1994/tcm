@@ -1,33 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+    pageEncoding="utf-8"%>
+<%@page import="testcase.caseinfo" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link rel="stylesheet" type="text/css"
-	href="easyui/themes/default/easyui.css">
-<link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
+<title>Insert title here</title>
+
 <script type="text/javascript" src="easyui/jquery.min.js"></script>
 <script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
-<title>Test case Manager</title>
+<link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
+<link rel="stylesheet" type="text/css"
+	href="easyui/themes/default/easyui.css">
 </head>
 <body>
-<script type="text/javascript" src="tcm.js"></script>
-<div class="easyui-layout" data-options="fit:true">
-	<div id="mm" class="easyui-menu" style="width: 120px;">
-		<div>重命名</div>
-	</div>
-	<div id="log" class="easyui-panel" title="Event Log"
-		style="height: 250px; padding: 10px"></div>
-	<div data-options="region:'west',split:true,title:'菜单'"
-		style="width: 150px;">
-		<ul id="tree" class="easyui-tree"
-			data-options="animate:true,lines:true,url:'/TCM/Testcaselibrary'">
-		</ul>
-	</div>
-	<div data-options="region:'center'" data-options="fit:true,href:'casecenter.jsp'" class="easyui-tabs" id="tab">
-
-		<!-- <div title="编辑用例" data-options="fit:false">
+<jsp:useBean id="caseinfo1" class="testcase.caseinfo"></jsp:useBean>
+<div title="编辑用例" data-options="fit:false">
 
 			<div id="tb" style="padding: 5px; height: 100%;bottom: 0px" data-options="fit:false">
 				<div>
@@ -50,8 +38,8 @@
 				<table border="0px" height="100%" style="vertical-align:top;width:70%;border: 1px;">
 					<tr height="50px">
 						<td colspan="2">用例编号：<br> <input type="text"
-							style="width: 95%;" id="id"></td>
-						<td>用例描述：<br> <input type="text" id="descript" style="width: 95%;"></td>
+							style="width: 95%;" id="id" value="<jsp:getProperty property="id" name="caseinfo1" />"></td>
+						<td>用例描述：<br> <input type="text" id="descript" style="width: 95%;" value="${caseinfo1.test}"></td>
 						<td rowspan="3" style="vertical-align: top;">预置条件：<br> <textarea
 								style="width: 95%; height: 90%; resize: none;" id="precondition"></textarea></td>
 					</tr>
@@ -111,10 +99,9 @@
 				</div>
 			</div>
 				
-			</div> -->
 			</div>
-		</div>
-	<script type="text/javascript">
+			
+			<script type="text/javascript">
 	$(document).ready(function() {
 		
 		alert('<%=request.getParameter("item")%>');
@@ -144,5 +131,6 @@
 		});
 	})
 	</script>
+	
 </body>
 </html>

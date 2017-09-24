@@ -28,14 +28,30 @@ $(document).ready(function(){
 					if ($('#tab').tabs('exists', node.text)){
 						$('#tab').tabs('select', node.text);
 					} else {
-						var content = '<iframe scrolling="auto" frameborder="0" src="https://www.baidu.com/" style="width:100%;height:100%;"></iframe>';
-						$('#tab').tabs('add',{
-							title:node.text,
-							content:content,
-							closable:true
-						});
+						
+						$.ajax({
+							  type: 'get',
+							  url: "/TCM/selectcreatcase",
+							  data: {
+								  id:node.text,
+							  },
+							  success: function(data,status){
+								  $.messager.progress('close');
+					 		      alert(data);
+					 		     var content = data;
+									$('#tab').tabs('add',{
+										title:node.text,
+										content:content,
+										closable:true
+									});},
+					 		      
+							});
+						
+						
 					}
 			}
+			else
+				alert(node.text)
 		}
 	});
 	$('#datagrid').datagrid({
