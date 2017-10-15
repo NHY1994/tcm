@@ -15,5 +15,6 @@
 	</environments>
 	<mappers>
 		<mapper resource="testcase/caseMapper.xml"/>
+		<mapper resource="login/login.xml"/>
 	</mappers>
 </configuration>

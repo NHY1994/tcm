@@ -7,10 +7,12 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.junit.Test;
 
 import testcase.caseinfo;
 
 public class mybatis1 {
+@Test
 public static void mybatis1() throws IOException{
 	String resource = "MybatisConfig.xml";
 	InputStream inputStream = Resources.getResourceAsStream(resource); 

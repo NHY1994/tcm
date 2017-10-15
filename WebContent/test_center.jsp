@@ -82,7 +82,7 @@
 		$(document).ready(function() {
 			
 			
-			alert(parent.$("input:hidden[name='par']").val());
+			alert(parent.$("input:hidden[name='par']").val()+"789");
 			
 			parent.$("#next,#pre").click(function(){
 				  

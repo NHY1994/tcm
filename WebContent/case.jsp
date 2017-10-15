@@ -117,7 +117,7 @@
 	<script type="text/javascript">
 	$(document).ready(function() {
 		
-		alert('<%=request.getParameter("item")%>');
+		alert('<%=request.getParameter("item")%>'+"123");
 		$("#save").click(function(){
 			$.messager.progress({
 				title:'请稍等',

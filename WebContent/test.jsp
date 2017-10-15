@@ -186,7 +186,7 @@
 																			onClick : function(
 																					item) {
 																				//...
-																				alert(item.text);
+																				alert(item.text+"***");
 																			}
 																		});
 													}

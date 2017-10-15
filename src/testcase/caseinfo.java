@@ -11,6 +11,7 @@ public class caseinfo {
 	private String level;
 	private String test_guidance;
 	private String test_project;
+	private String precondition;
 	private String test_step;
 	private String expected_results;
 	private String Attachment;
@@ -93,5 +94,12 @@ public class caseinfo {
 	public void setAttachment(String attachment) {
 		Attachment = attachment;
 	}
+	public String getPrecondition() {
+		return precondition;
+	}
+	public void setPrecondition(String precondition) {
+		this.precondition = precondition;
+	}
+	
 	
 }

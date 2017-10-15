@@ -38,20 +38,23 @@ public class selectcreatcase extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String id=request.getParameter("id");
+		System.out.println(id+"---");
 		String resource = "MybatisConfig.xml";
 		InputStream inputStream = Resources.getResourceAsStream(resource); 
 		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
-		SqlSession session = sqlSessionFactory.openSession();
+		SqlSession sqlsession = sqlSessionFactory.openSession();
+		caseinfo caseinfo=new caseinfo();
 		try{
-		caseinfo caseinfo = session.selectOne("selectid", id);
+		caseinfo = sqlsession.selectOne("selectid", id);
 		System.out.println(caseinfo.getId());
 		System.out.println(caseinfo.getTest());
 		}
 		finally{
-			session.close();
+			sqlsession.close();
 			}
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-		response.sendRedirect("casecenter.jsp");
+		request.setAttribute("caseinfo", caseinfo);
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.getRequestDispatcher("casecenter.jsp").forward(request, response);;
 	}
 
 	/**

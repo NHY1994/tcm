@@ -38,10 +38,10 @@ $(document).ready(function(){
 							  success: function(data,status){
 								  $.messager.progress('close');
 					 		      alert(data);
-					 		     var content = data;
+					 		     var content = "<div>"+data+"</div>";
 									$('#tab').tabs('add',{
 										title:node.text,
-										content:content,
+										content:'<iframe src="/TCM/selectcreatcase?id='+node.text+'" height="100%" width="100%" frameborder="0">123</div>',
 										closable:true
 									});},
 					 		      
@@ -51,7 +51,7 @@ $(document).ready(function(){
 					}
 			}
 			else
-				alert(node.text)
+				alert(node.text+"---")
 		}
 	});
 	$('#datagrid').datagrid({
