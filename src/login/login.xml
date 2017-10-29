@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="login.LoginInterface">
 	<select id="uerInfo" resultType="login.UserInfo">
-		SELECT username,psd FROM `user` WHERE username=#{param1} AND psd=#{param2}
+		SELECT * FROM `user` WHERE username=#{param1} AND psd=#{param2}
 	</select>
 
 	<insert id="SignUp" parameterType="login.UserInfo">

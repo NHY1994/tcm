@@ -1,3 +1,4 @@
+<%@page import="javax.websocket.Session"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -73,7 +74,8 @@
 		style="height: 100px; background: rgb(255, 255, 255); overflow: hidden;"
 		data-options="region:'north'">
 		<div>
-			<img id="pic" src="logo.png" style="height: 50px">
+		<%HttpSession session2=request.getSession(); %>
+			<img id="pic" src="logo.png" style="height: 50px">&nbsp;&nbsp;&nbsp;欢迎你:<%=session2.getAttribute("username") %>
 		</div>
 		<div class="easyui-panel"
 			style="padding: 5px; margin-top: 10px; width: 100%;">

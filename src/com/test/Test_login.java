@@ -13,7 +13,7 @@ public class Test_login {
 	@Test
 	public void test() throws IOException {
 		login_result result=new login_result();
-		System.out.println(result.login("nihongyan1","123456"));
+		//System.out.println(result.login("nihongyan1","123456"));
 	}
 	
 	@Test

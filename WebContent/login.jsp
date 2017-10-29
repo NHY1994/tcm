@@ -113,20 +113,17 @@
  			  if($(this).text()=='登      录'){
  			  var name=$("#username").val();
  			 var psd=$("#Password").val();
- 		    $.post("/TCM/login",
+ 		    $.post("/TCM/login_test",
  		    {
  		      name:name,
  		      psd:psd
  		    },
  		    function(data,status){
- 		      alert(data);
  		      if(data=="success")
- 		         document.cookie="name=nihongyan";
+ 		    	 window.location.href="index.jsp";
  		      else
- 		    	  document.cookie="name=";
+ 		    	  alert(data)
  		    });}
- 			  else
- 				 console.log($(this).text());
  		  });
  		});
 	</script>
