@@ -90,7 +90,7 @@
 					<tr>
 						<td colspan="4">
 							<div style="width: 100%; height: auto%;">
-								<button class="easyui-linkbutton" id="save">保 存</button>
+								<button class="easyui-linkbutton" id="save">更 新</button>
 								<button class="easyui-linkbutton">取 消</button>
 							</div>
 						</td>
@@ -112,7 +112,7 @@
 			});
 		$.ajax({
 			  type: 'POST',
-			  url: "/TCM/creatcase",
+			  url: "/TCM/UpDataCase",
 			  data: {
 				  id:$("#id").val(),
 				  descript:$("#descript").val(),

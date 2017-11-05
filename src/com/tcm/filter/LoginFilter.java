@@ -51,14 +51,17 @@ public class LoginFilter implements Filter {
 			System.out.println(sessionvalue);
 			if (sessionvalue != null) {
 				System.out.println("123");
+				
 			} else{
-				System.out.println("456");
+				System.out.println(uri);
 				httpServletResponse.sendRedirect("/TCM/");
 			}
 				
 		}
-		// pass the request along the filter chain
+		request.setCharacterEncoding("utf-8"); 
 		chain.doFilter(request, response);
+		// pass the request along the filter chain
+		
 	}
 
 	/**

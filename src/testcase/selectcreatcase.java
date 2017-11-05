@@ -37,24 +37,35 @@ public class selectcreatcase extends HttpServlet {
 	@SuppressWarnings("static-access")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String id=request.getParameter("id");
-		System.out.println(id+"---");
-		String resource = "MybatisConfig.xml";
-		InputStream inputStream = Resources.getResourceAsStream(resource); 
-		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
-		SqlSession sqlsession = sqlSessionFactory.openSession();
-		caseinfo caseinfo=new caseinfo();
-		try{
-		caseinfo = sqlsession.selectOne("selectid", id);
-		System.out.println(caseinfo.getId());
-		System.out.println(caseinfo.getTest());
-		}
-		finally{
-			sqlsession.close();
-			}
-		request.setAttribute("caseinfo", caseinfo);
+		String id = new String(request.getParameter("id").getBytes("iso8859-1"),"UTF-8");
+		String type=request.getParameter("type");
+		String treeroot=request.getParameter("treeroot");
+		System.out.println(id);
+		if(type.equals("1")){
+			request.setAttribute("treeroot", treeroot);
+			request.setAttribute("id", id);
+			request.getRequestDispatcher("casecenter2.jsp").forward(request, response);
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		request.getRequestDispatcher("casecenter.jsp").forward(request, response);;
+		}
+		else{
+			System.out.println(id+"---");
+			String resource = "MybatisConfig.xml";
+			InputStream inputStream = Resources.getResourceAsStream(resource); 
+			SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+			SqlSession sqlsession = sqlSessionFactory.openSession();
+			caseinfo caseinfo=new caseinfo();
+			try{
+			caseinfo = sqlsession.selectOne("selectid", id);
+			System.out.println(caseinfo.getId());
+			System.out.println(caseinfo.getTest());
+			}
+			finally{
+				sqlsession.close();
+				}
+			request.setAttribute("caseinfo", caseinfo);
+			request.getRequestDispatcher("casecenter.jsp").forward(request, response);
+		}
+		
 	}
 
 	/**

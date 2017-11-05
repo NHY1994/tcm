@@ -3,7 +3,23 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="testcase.caseinfoMapper">
-  <select id="selectid" resultType="testcase.caseinfo">
-    SELECT * FROM test_case_source WHERE id = #{id}
-  </select>
+	<select id="selectid" resultType="testcase.caseinfo">
+		SELECT * FROM test_case_source WHERE id = #{id}
+	</select>
+
+	<update id="updatacase1" parameterType="testcase.caseinfo">
+		UPDATE test_case_source
+		SET `status` = #{status},
+		descript = #{descript} ,
+		test_module=#{test_module},
+		`level`=#{level},
+		test_guidance=#{test_guidance},
+		precondition=#{precondition},
+		test_project=#{test_project},
+		test_step=#{test_step},
+		expected_results=#{expected_results},
+		Attachment=#{Attachment}
+		WHERE
+		id = #{id}
+	</update>
 </mapper>

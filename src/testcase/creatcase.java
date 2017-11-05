@@ -27,6 +27,8 @@ import javafx.util.converter.DateTimeStringConverter;
 
 /**
  * Servlet implementation class creatcase
+ * 测试用例编辑界面
+ * 新增测试用例
  */
 @WebServlet("/creatcase")
 public class creatcase extends HttpServlet {

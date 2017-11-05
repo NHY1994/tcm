@@ -2,7 +2,7 @@ package testcase;
 
 public class caseinfo {
 	private String test;
-	private String id;
+	private String id="";
 	private String create_time;
 	private String status;
 	private String descript;

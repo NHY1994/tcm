@@ -34,6 +34,7 @@ $(document).ready(function(){
 							  url: "/TCM/selectcreatcase",
 							  data: {
 								  id:node.text,
+								  type:2
 							  },
 							  success: function(data,status){
 								  $.messager.progress('close');
@@ -41,7 +42,7 @@ $(document).ready(function(){
 					 		     var content = "<div>"+data+"</div>";
 									$('#tab').tabs('add',{
 										title:node.text,
-										content:'<iframe src="/TCM/selectcreatcase?id='+node.text+'" height="100%" width="100%" frameborder="0">123</div>',
+										content:'<iframe src="/TCM/selectcreatcase?type=2&id='+node.text+'" height="100%" width="100%" frameborder="0">123</div>',
 										closable:true
 									});},
 					 		      
@@ -50,8 +51,14 @@ $(document).ready(function(){
 						
 					}
 			}
-			else
-				alert(node.text+"---")
+			else{
+				alert(node.text+$('#tree').tree("getRoot").text)
+				$('#tab').tabs('add',{
+					title:node.text,
+					content:'<iframe src="/TCM/selectcreatcase?treeroot='+$('#tree').tree("getRoot").text+'&type=1&id='+node.text+'" height="100%" width="100%" frameborder="0">123</div>',
+					closable:true
+				});
+				}
 		}
 	});
 	$('#datagrid').datagrid({
