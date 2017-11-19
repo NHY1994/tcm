@@ -1,4 +1,4 @@
-package testcase;
+package com.tcm.updatacase;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,17 +7,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.tcm.log4j.log4j;
+
 /**
- * Servlet implementation class CreatePlan
+ * Servlet implementation class UpDataCase
+ * 测试用例编辑界面
+ * 更新测试用例
  */
-@WebServlet("/CreatePlan")
-public class CreatePlan extends HttpServlet {
+@WebServlet("/UpDataCase")
+public class UpDataCase extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CreatePlan() {
+    public UpDataCase() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,22 +39,11 @@ public class CreatePlan extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//doGet(request, response);
-		String test_project=request.getParameter("test_project");
-		String software_version=request.getParameter("software_version");
-		String plan_version=request.getParameter("plan_version");
-		String star_time=request.getParameter("star_time");
-		String end_time=request.getParameter("end_time");
-		String note=request.getParameter("note");
-		String case_level=request.getParameter("case_level");
-		String testversion=request.getParameter("testversion");
-		String where="WHERE ";
-		for (String retval: case_level.split(",")){
-			where+="level="+retval+" or ";
-            System.out.println(where);
-        }
-		System.out.println(where.substring(0, where.length()-4));
-		System.out.print(case_level+"---"+test_project+"--"+software_version+"---"+plan_version+"---"+star_time+"-"+end_time+"-"+note);
+		System.out.println("Start");
+		updata updata=new updata();
+		updata.up(request, response);
+		System.out.println("Start");
+		
 	}
 
 }

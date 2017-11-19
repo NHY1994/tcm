@@ -13,6 +13,7 @@
 <link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
 <script type="text/javascript" src="easyui/jquery.min.js"></script>
 <script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
 <title>Insert title here</title>
 
 <style>
@@ -21,7 +22,7 @@
 	var x;
 	$(document).ready(function() {
 		//$('#datagrid1').datagrid({
-			//url : '/TCM/testcase'
+		//url : '/TCM/testcase'
 		//})
 		//$('#tcm').css('display','block');
 		//$('#case').css('display','none');
@@ -31,9 +32,9 @@
 			//$('#center').detach()
 			$('#dlg').dialog('close');
 			$("#opentest").dialog('open');
-			$('#center').panel({
-				href : 'test.jsp'
-			});
+			//$('#center').panel({
+			//	href : 'test.jsp'
+			//});
 		});
 	});
 	$(function() {
@@ -74,8 +75,10 @@
 		style="height: 100px; background: rgb(255, 255, 255); overflow: hidden;"
 		data-options="region:'north'">
 		<div>
-		<%HttpSession session2=request.getSession(); %>
-			<img id="pic" src="logo.png" style="height: 50px">&nbsp;&nbsp;&nbsp;欢迎你:<%=session2.getAttribute("username") %>
+			<%
+				HttpSession session2 = request.getSession();
+			%>
+			<img id="pic" src="logo.png" style="height: 50px">&nbsp;&nbsp;&nbsp;欢迎你:<%=session2.getAttribute("username")%>
 		</div>
 		<div class="easyui-panel"
 			style="padding: 5px; margin-top: 10px; width: 100%;">
@@ -105,7 +108,7 @@
 	<div id="opentest" closed="true" class="easyui-dialog" title="打开计划"
 		style="width: 700px; height: 500px;"modal:true">
 		<div style="width: 100%; padding: 0px">
-			<table class="easyui-datagrid" id="datagrid1"
+			<table class="easyui-datagrid" id="datagrid-opentest"
 				style="height: auto; margin: 10px;"
 				data-options="singleSelect:true,collapsible:true,method:'get',fit:false,border:true,fitColumns:true,url:'datagrid_data1.json',toolbar:'#tb1'">
 				<thead>
@@ -141,8 +144,9 @@
 
 		<table style="height: 100%; width: 100%; font-size: 13px" border="0px">
 			<tr style="height: 50px">
-				<td>测试项目：<br> <select id="project" class="easyui-combobox"
-					name="dept" style="width: 98%;" data-options="editable:false">
+				<td width="33%">测试项目：<br> <select id="project"
+					class="easyui-combobox" name="dept" style="width: 98%;"
+					data-options="editable:false">
 						<option value="1">请选择...</option>
 						<option value="2">Lopscoop-PcWeb</option>
 						<option value="3">Lopscoop-MobWeb</option>
@@ -150,10 +154,11 @@
 						<option value="5">invirlink-PcWeb</option>
 				</select>
 				</td>
-				<td>软件版本：<br> <input id="sv" class="easyui-textbox"
-					style="width: 90%"></td>
-				<td>测试计划版本：<br> <select id="pv" class="easyui-combobox"
-					name="dept" style="width: 98%;" data-options="editable:false">
+				<td width="33%">软件版本：<br> <input id="sv"
+					class="easyui-textbox" style="width: 98%"></td>
+				<td width="33%">测试计划版本：<br> <select id="pv"
+					class="easyui-combobox" name="dept" style="width: 98%;"
+					data-options="editable:false">
 						<option value="1">请选择...</option>
 						<option value="2">B01</option>
 						<option value="3">B02</option>
@@ -199,6 +204,18 @@
 	</div>
 	<script type="text/javascript">
 		$(document).ready(function() {
+			//opentest dialog
+			
+		$('#datagrid-opentest').datagrid({
+			onDblClickRow : function(index, field, value) {
+				var row = $('#datagrid-opentest').datagrid('getSelected');
+				if (row){
+					alert('Item ID:'+row.id);
+				}
+					}
+			});
+			//opentest dialog
+
 			function change() {
 				var project = $('#project').combobox('getText');
 				var pv = $('#pv').combobox('getText');
@@ -228,7 +245,7 @@
 				});
 				var idstr = case_level.join(',');//将数组元素连接起来以构建一个字符串  
 				alert(idstr);
-				$.post("/TCM/CreatePlan", {
+				$.post("/TCM/creatpaln", {
 					test_project : $('#project').combobox('getText'),
 					software_version : $("#sv").val(),
 					plan_version : $('#pv').combobox('getText'),
@@ -238,7 +255,12 @@
 					end_time : $('#enddate').datebox('getValue'),
 					note : $("#note").val()
 				}, function(data, status) {
-					alert("Data: " + data + "\nStatus: " + status);
+					if (status == 'success') {
+						$.messager.alert('提示', '创建成功');
+						$("#createplan").dialog('close');
+
+					} else
+						alert("Error")
 				});
 			});
 		})

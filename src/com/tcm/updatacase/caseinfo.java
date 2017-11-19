@@ -1,7 +1,7 @@
-package testcase;
+package com.tcm.updatacase;
 
 public class caseinfo {
-	private String plan_number;
+	private String test;
 	private String id="";
 	private String create_time;
 	private String status;
@@ -100,11 +100,13 @@ public class caseinfo {
 	public void setPrecondition(String precondition) {
 		this.precondition = precondition;
 	}
-	public String getPlan_number() {
-		return plan_number;
-	}
-	public void setPlan_number(String plan_number) {
-		this.plan_number = plan_number;
+	@Override
+	public String toString() {
+		return "caseinfo [test=" + test + ", id=" + id + ", create_time=" + create_time + ", status=" + status
+				+ ", descript=" + descript + ", create_user=" + create_user + ", test_module=" + test_module
+				+ ", level=" + level + ", test_guidance=" + test_guidance + ", test_project=" + test_project
+				+ ", precondition=" + precondition + ", test_step=" + test_step + ", expected_results="
+				+ expected_results + ", Attachment=" + Attachment + "]";
 	}
 	
 	

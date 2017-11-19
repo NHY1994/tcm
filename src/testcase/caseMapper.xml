@@ -4,7 +4,8 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="testcase.caseinfoMapper">
 	<select id="selectid" resultType="testcase.caseinfo">
-		SELECT * FROM test_case_source WHERE id = #{id}
+		SELECT * FROM test_case_source
+		WHERE id = #{id}
 	</select>
 
 	<update id="updatacase1" parameterType="testcase.caseinfo">
@@ -20,6 +21,63 @@
 		expected_results=#{expected_results},
 		Attachment=#{Attachment}
 		WHERE
-		id = #{id}
+		id =
+		#{id}
 	</update>
+
+	<insert id="copycase" parameterType="testcase.caseinfo">
+		INSERT INTO
+		test_case_source_implement (
+		plan_number,
+		caseid,
+		create_time,
+		descript,
+		create_user,
+		test_module,
+		level,
+		test_guidance,
+		precondition,
+		test_project,
+		test_step,
+		expected_results,
+		STATUS
+		)
+		SELECT
+		#{plan_number},
+		caseid,
+		create_time,
+		descript,
+		create_user,
+		test_module,
+		level,
+		test_guidance,
+		precondition,
+		test_project,
+		test_step,
+		expected_results,
+		5
+		FROM
+		test_case_source
+		WHERE
+		test_project = #{test_project}
+		AND level =
+		#{level}
+
+	</insert>
+
+	<insert id="creatplan" parameterType="com.tcm.bean.TestPlan">
+		INSERT INTO test_plan (
+		id,
+		project,
+		star_time,
+		end_time,
+		status,
+		software_version,
+		plan_version,
+		note
+		)
+		VALUES
+		(#{id},#{project},#{star_time},#{end_time},#{status},#{software_version},#{plan_version},#{note})
+
+	</insert>
 </mapper>
