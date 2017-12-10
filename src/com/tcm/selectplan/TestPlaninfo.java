@@ -1,8 +1,8 @@
-package com.tcm.bean;
+package com.tcm.selectplan;
 
 import java.util.Date;
 
-public class TestPlan {
+public class TestPlaninfo {
 	private String id;
 	private String test_plan_version;
 	private String project;
@@ -12,6 +12,9 @@ public class TestPlan {
 	private String software_version;
 	private String plan_version;
 	private String note;
+	private String star_timetoString;
+	private String end_timetoString;
+
 
 	public String getId() {
 		return id;
@@ -83,6 +86,22 @@ public class TestPlan {
 
 	public void setTest_plan_version(String test_plan_version) {
 		this.test_plan_version = test_plan_version;
+	}
+
+	public String getStar_timetoString() {
+		return star_timetoString;
+	}
+
+	public void setStar_timetoString(String star_timetoString) {
+		this.star_timetoString = star_timetoString;
+	}
+
+	public String getEnd_timetoString() {
+		return end_timetoString;
+	}
+
+	public void setEnd_timetoString(String end_timetoString) {
+		this.end_timetoString = end_timetoString;
 	}
 
 }

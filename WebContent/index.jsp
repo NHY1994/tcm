@@ -110,28 +110,26 @@
 		<div style="width: 100%; padding: 0px">
 			<table class="easyui-datagrid" id="datagrid-opentest"
 				style="height: auto; margin: 10px;"
-				data-options="singleSelect:true,collapsible:true,method:'get',fit:false,border:true,fitColumns:true,url:'datagrid_data1.json',toolbar:'#tb1'">
+				data-options="singleSelect:true,collapsible:true,method:'get',fit:false,border:true,fitColumns:true,url:'/TCM/selectplan',toolbar:'#tb1'">
 				<thead>
 					<tr>
 						<th data-options="field:'hidden',width:80" hidden="true">ID</th>
-						<th data-options="field:'id',width:80" sortable="true">用例编号</th>
-						<th data-options="field:'status',width:100" sortable="true">执行状态</th>
-						<th data-options="field:'implement_user',width:100"
-							sortable="true">执行者</th>
-						<th data-options="field:'level',width:100" sortable="true">用例等级</th>
-						<th data-options="field:'test_module',width:100" sortable="true">测试模块</th>
-						<th data-options="field:'test_step',width:100" sortable="true">测试步骤</th>
-						<th data-options="field:'expected_results',width:100"
-							sortable="true">预期结果</th>
-						<th data-options="field:'implement_time',width:100"
-							sortable="true">执行时间</th>
+						<th data-options="field:'id',width:80" sortable="true">ID</th>
+						<th data-options="field:'project',width:100" sortable="true">测试项目</th>
+						<th data-options="field:'star_timetoString',width:100"
+							sortable="true">开始时间</th>
+						<th data-options="field:'end_timetoString',width:100" sortable="true">结束时间</th>
+						<th data-options="field:'status',width:100" sortable="true">状态</th>
+						<th data-options="field:'software_version',width:100" sortable="true">软件版本</th>
+						<th data-options="field:'plan_version',width:100"
+							sortable="true">计划版本</th>
 					</tr>
 				</thead>
 			</table>
 			<div id="tb1" style="padding: 5px; height: auto">
 				<div>
-					<input type="text" class="easyui-textbox"> <a href="#"
-						class="easyui-linkbutton" iconCls="icon-search">Search</a>
+					<input type="text" class="easyui-textbox" id="searchtest"> <a href="#"
+						class="easyui-linkbutton" iconCls="icon-search" id="search">搜索</a>
 				</div>
 			</div>
 		</div>
@@ -205,14 +203,24 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 			//opentest dialog
-			
-		$('#datagrid-opentest').datagrid({
-			onDblClickRow : function(index, field, value) {
-				var row = $('#datagrid-opentest').datagrid('getSelected');
-				if (row){
-					alert('Item ID:'+row.id);
-				}
+		
+		
+		
+		$('#search').bind('click', function() {
+			$('#datagrid-opentest').datagrid({
+				url:'/TCM/selectplan?selectPlan='+$('#searchtest').val()
+			});	
+			});
+			$('#datagrid-opentest').datagrid({
+				onDblClickRow : function(index, field, value) {
+					var row = $('#datagrid-opentest').datagrid('getSelected');
+					if (row) {
+						alert('Item ID:' + row.id);
 					}
+					$('#center').panel({
+							href : 'test.jsp'
+						});
+				}
 			});
 			//opentest dialog
 
@@ -220,7 +228,7 @@
 				var project = $('#project').combobox('getText');
 				var pv = $('#pv').combobox('getText');
 				var sv = $("#sv").val();
-				$("#testversion").val(project + "-" + sv + "-" + pv);
+				$("#testversion").val(project + "-v" + sv + "-" + pv);
 				//alert(val)
 			}
 			$("#project").combobox({
@@ -249,7 +257,7 @@
 					test_project : $('#project').combobox('getText'),
 					software_version : $("#sv").val(),
 					plan_version : $('#pv').combobox('getText'),
-					testversion : $("#testversion").val,
+					testversion : $("#testversion").val(),
 					case_level : idstr,
 					star_time : $('#stdate').datebox('getValue'),
 					end_time : $('#enddate').datebox('getValue'),

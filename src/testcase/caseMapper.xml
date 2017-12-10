@@ -68,6 +68,7 @@
 	<insert id="creatplan" parameterType="com.tcm.bean.TestPlan">
 		INSERT INTO test_plan (
 		id,
+		test_plan_version,
 		project,
 		star_time,
 		end_time,
@@ -77,7 +78,16 @@
 		note
 		)
 		VALUES
-		(#{id},#{project},#{star_time},#{end_time},#{status},#{software_version},#{plan_version},#{note})
+		(#{id},#{test_plan_version},#{project},#{star_time},#{end_time},#{status},#{software_version},#{plan_version},#{note})
 
 	</insert>
+	
+	<select id="selectPlan1" resultType="com.tcm.selectplan.TestPlaninfo">
+		SELECT
+		*
+		FROM
+		test_plan
+		where
+		test_plan_version LIKE CONCAT('%','${_parameter}','%')
+	</select>
 </mapper>

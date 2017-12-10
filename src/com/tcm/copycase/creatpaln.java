@@ -51,12 +51,13 @@ public class creatpaln extends HttpServlet {
 		String end_time=request.getParameter("end_time")+" 00:00:00";
 		String note=request.getParameter("note");
 		String case_level=request.getParameter("case_level");
+		String test_plan_version=request.getParameter("testversion");
 		System.out.println(star_time);
 		Timestamp star_time1 = Timestamp.valueOf(star_time); 
 		Timestamp end_time1 = Timestamp.valueOf(end_time); 
 		//String testversion=request.getParameter("testversion");
 		CreatPlan creatPlan=new CreatPlan();
-		creatPlan.creatplan(end_time1, "1", note, plan_version, test_project, software_version, star_time1, "1");
+		creatPlan.creatplan(end_time1,test_plan_version, "1", note, plan_version, test_project, software_version, star_time1, "1");
 		for (String retval: case_level.split(",")){
 			copyCase.copycase("1", test_project, retval);
         }
