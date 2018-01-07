@@ -57,7 +57,7 @@ public class creatpaln extends HttpServlet {
 		Timestamp end_time1 = Timestamp.valueOf(end_time); 
 		//String testversion=request.getParameter("testversion");
 		CreatPlan creatPlan=new CreatPlan();
-		creatPlan.creatplan(end_time1,test_plan_version, "1", note, plan_version, test_project, software_version, star_time1, "1");
+		creatPlan.creatplan(end_time1,test_plan_version, note, plan_version, test_project, software_version, star_time1, "1");
 		for (String retval: case_level.split(",")){
 			copyCase.copycase("1", test_project, retval);
         }

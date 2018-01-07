@@ -85,7 +85,8 @@ public class creatcase extends HttpServlet {
 		
 		String driver="com.mysql.jdbc.Driver";
 		String url="jdbc:mysql://localhost:3306/tcm";
-		String sql="INSERT INTO test_case_source (id,create_time,STATUS,descript,create_user,test_module,LEVEL,test_guidance,precondition,test_project,test_step,expected_results,Attachment) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		//String sql="INSERT INTO test_case_source (id,create_time,STATUS,descript,create_user,test_module,LEVEL,test_guidance,precondition,test_project,test_step,expected_results,Attachment) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql="INSERT INTO test_case_source (id,create_time,STATUS,descript,create_user,test_module,LEVEL,test_guidance,precondition,test_project,test_step,expected_results,Attachment) SELECT MAX(id),?,?,?,?,?,?,?,?,?,?,?,? FROM test_case_source";
 		String name="null";
 		try{
 			Class.forName(driver);

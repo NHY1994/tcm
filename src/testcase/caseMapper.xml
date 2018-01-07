@@ -82,6 +82,23 @@
 
 	</insert>
 	
+	<insert id="creatplan1" parameterType="com.tcm.bean.TestPlan">
+	INSERT INTO test_plan (
+	id,
+	test_plan_version,
+	project,
+	star_time,
+	end_time,
+	status,
+	software_version,
+	plan_version,
+	note
+	)
+	SELECT
+	MAX(id)+1,#{test_plan_version},#{project},#{star_time},#{end_time},#{status},#{software_version},#{plan_version},#{note}
+	FROM test_plan
+</insert>
+	
 	<select id="selectPlan1" resultType="com.tcm.selectplan.TestPlaninfo">
 		SELECT
 		*

@@ -12,7 +12,7 @@
 <title>Insert title here</title>
 </head>
 <body style="margin: 0px">
-	
+	<%String testPlanid=request.getParameter("testPlanid"); %>
 	<div id="tools" style="font-size: 13px;">
 	<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true"></a>
 	<a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true"></a>
@@ -80,12 +80,9 @@
 			    });
 	};
 		$(document).ready(function() {
-			
-			
-			alert(parent.$("input:hidden[name='par']").val()+"789");
-			
+			//alert(parent.$("input:hidden[name='par']").val()+"789");
 			parent.$("#next,#pre").click(function(){
-				  
+				//alert($(this).attr("id"))
 				  if($(this).attr("id")=="pre"){
 					  if(rowIndex<=0){
 						  rowIndex=1;
@@ -95,7 +92,11 @@
 						console.log(rowIndex);
 						rowid=row1.id;
 						console.log(rowid);
+						console.log("***"+rowIndex+1+'/'+data.rows.length);
 						parent.$("#casenum").val(rowIndex+1+'/'+data.rows.length);
+						//parent.$('#casenum').val('12/1')
+                        //var casenum=window.parent.document.getElementById("casenum")
+                        //casenum.value="123"
 						open1();
 				  }
 				  else{
@@ -106,6 +107,7 @@
 					  var row1=$('#test_center_data').datagrid('getData').rows[++rowIndex];
 						console.log(rowIndex);
 						console.log(row1);
+						console.log("***"+rowIndex+1+'/'+data.rows.length);
 						parent.$("#casenum").val(rowIndex+1+'/'+data.rows.length);
 						rowid=row1.id;
 						console.log(rowid);
@@ -121,6 +123,7 @@
 									row = $('#test_center_data').datagrid('getSelected');
 									rowid=row.id;
 									rowIndex = $('#test_center_data').datagrid('getRowIndex', row);
+									console.log("***"+rowIndex+1+'/'+data.rows.length);
 									parent.$("#casenum").val(rowIndex+1+'/'+data.rows.length);
 									if (row) {
 										//parent.$("#dlg").dialog('open');

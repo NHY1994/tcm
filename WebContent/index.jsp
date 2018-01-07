@@ -215,11 +215,13 @@
 				onDblClickRow : function(index, field, value) {
 					var row = $('#datagrid-opentest').datagrid('getSelected');
 					if (row) {
-						alert('Item ID:' + row.id);
+						//alert('Item ID:' + row.id);
 					}
 					$('#center').panel({
-							href : 'test.jsp'
+							href : 'test.jsp?testPlanid='+row.id
 						});
+					$("#opentest").dialog('close');
+					
 				}
 			});
 			//opentest dialog
@@ -280,7 +282,7 @@
 	<!--  <div class="easyui-layout" href="west.jsp" style="width:100%;height:100%;"></div>-->
 	<!--  <div data-options="region:'west',split:true" href="west.jsp" title="West" style="width:100px;"></div>-->
 	<div
-		data-options="region:'center',fit:false,border:false,href:'test.jsp'"
+		data-options="region:'center',fit:false,border:false,href:'hellow.jsp'"
 		style="padding: 0px; border: 0px; height: auto" id="center"></div>
 </body>
 </html>

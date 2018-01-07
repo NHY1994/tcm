@@ -41,7 +41,7 @@ public class selecttree extends HttpServlet {
 		String caseid=request.getParameter("id");
 		String driver="com.mysql.jdbc.Driver";
 		String url="jdbc:mysql://localhost:3306/tcm";
-		String sql="SELECT distinct test_module FROM test_case_source_implement WHERE plan_number=10010";
+		String sql="SELECT distinct test_module FROM test_case_source_implement WHERE plan_number="+caseid;
 		try {
 			Class.forName(driver);
 			Connection con=DriverManager.getConnection(url, "root", "123456");

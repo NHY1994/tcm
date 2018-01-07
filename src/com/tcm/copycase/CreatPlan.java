@@ -14,7 +14,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import testcase.caseinfo;
 
 public class CreatPlan {
-	public void creatplan(Date end_time,String test_plan_version, String id, String note, String plan_version, String project,
+	public void creatplan(Date end_time,String test_plan_version, String note, String plan_version, String project,
 			String software_version, Date star_time, String status) throws IOException {
 		String resource = "MybatisConfig.xml";
 		InputStream inputStream = Resources.getResourceAsStream(resource);
@@ -23,7 +23,7 @@ public class CreatPlan {
 		TestPlan testPlan = new TestPlan();
 		testPlan.setEnd_time(end_time);
 		testPlan.setTest_plan_version(test_plan_version);
-		testPlan.setId(id);
+		//testPlan.setId(id);
 		testPlan.setNote(note);
 		testPlan.setPlan_version(plan_version);
 		testPlan.setProject(project);
@@ -31,7 +31,7 @@ public class CreatPlan {
 		testPlan.setStar_time(star_time);
 		testPlan.setStatus(status);
 		try {
-			session.insert("creatplan", testPlan);
+			session.insert("creatplan1", testPlan);
 			session.commit();
 		} finally {
 			session.close();

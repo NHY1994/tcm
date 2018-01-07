@@ -7,12 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%String testPlanid=request.getParameter("testPlanid"); %>
 	<div class="easyui-layout" style="height: 100%; width: 100%"
 		data-options="fit:true,border:false">
 		<div data-options="region:'west',split:true,title:'West'"
 			style="width: 150px;">
 			<ul id="tree" class="easyui-tree"
-				data-options="animate:true,lines:true,url:'/TCM/selecttree'">
+				data-options="animate:true,lines:true,url:'/TCM/selecttree?id=<%=testPlanid%>'">
 			</ul>
 		</div>
 		<div data-options="region:'center'"
@@ -162,12 +163,7 @@
 	</div>
 	<script type="text/javascript">
 		$(document).ready(function() {
-							$('#tree')
-									.tree(
-											{
-
-												onContextMenu : function(e,
-														node) {
+		$('#tree').tree({onContextMenu : function(e,node) {
 													e.preventDefault();
 													if ($('#tree').tree(
 															'isLeaf',
@@ -206,18 +202,19 @@
 																.val(
 																		'?node='
 																				+ node.text
-																				+ '&planid='
-																				+ $(
-																						"input:hidden[name='planid']")
-																						.val());
-														var tab = $('#tab')
-																.tabs(
-																		'getSelected');
+																				+ '&planid=<%=testPlanid%>');
+														var tab = $('#tab').tabs('getSelected');
+														var tabs = $('#tab').tabs('tabs');
+														var length = tabs.length;
+														for(var i = 0; i < length; i++) {
+														    var onetab = tabs[0];
+														    var title = onetab.panel('options').tab.text();
+														        //var title = onetab.panel('options').title;
+														    $("#tab").tabs("close", title);
+														}
 														alert(node.text);
-														var content = '<iframe id="'+node.text+'" scrolling="auto" frameborder="0" src="test_center.jsp" style="width:100%;height:100%;"></iframe>';
-														if ($('#tab').tabs(
-																'exists',
-																node.text)) //{
+														var content = '<div id="testCenter" scrolling="auto" frameborder="0" href=test_center.jsp?testPlanid=<%=testPlanid%> class="easyui-panel" style="width:100%;height:100%;"></div>';
+														if ($('#tab').tabs('exists',node.text)) //{
 															$('#tab').tabs(
 																	'close',
 																	node.text);
@@ -225,9 +222,11 @@
 															title : node.text,
 															content : content,
 															closable : true,
-														//href:"test_center.jsp"
-														});
+														    //href : test_center.jsp?testPlanid=<%=testPlanid%>
+														}
+														);
 													}
+													$("#testCenter").html("输入要添加内容即可");
 												}
 											//}
 											});

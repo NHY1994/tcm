@@ -44,7 +44,7 @@ public class LoginFilter implements Filter {
 		HttpSession session = httpRequest.getSession();
 		String uri = httpRequest.getRequestURI();
 		System.out.println(uri);
-		if (uri.equals("/TCM/")||uri.equals("/TCM/login_test")) {
+		if (uri.equals("/TCM/")||uri.equals("/TCM/login_test")||uri.equals("/TCM/js/particles.js")||uri.equals("/TCM/js/app.js")) {
 
 		} else {
 			String sessionvalue = (String) session.getAttribute("username");
